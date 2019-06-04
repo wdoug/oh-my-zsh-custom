@@ -98,7 +98,7 @@ theme_precmd () {
 
 # Right hand prompt
 # originally copied and modified from avit theme
-RPROMPT='$(_vi_status)%{$(echotc UP 1)%}$(_ruby_version) $(_node_prompt_version) $(_python_prompt_version) - $(_git_time_since_commit) $(git_prompt_status) ${_return_status}%{$(echotc DO 1)%}'
+RPROMPT='$(_vi_status)%{$(echotc UP 1)%}$(_ruby_version) $(_node_prompt_version) $(_python_prompt_version) - $(_git_time_since_commit) $(git_prompt_status) ${_return_status}%{$(echotc DO 1)%}%{$reset_color%}'
 
 function _vi_status() {
   if {echo $fpath | grep -q "plugins/vi-mode"}; then
