@@ -100,6 +100,7 @@ theme_precmd () {
 # originally copied and modified from avit theme
 RPROMPT='$(_vi_status)%{$(echotc UP 1)%}$(_ruby_version) $(_node_prompt_version) $(_python_prompt_version) - $(_git_time_since_commit) $(git_prompt_status) ${_return_status}%{$(echotc DO 1)%}%{$reset_color%}'
 
+
 function _vi_status() {
   if {echo $fpath | grep -q "plugins/vi-mode"}; then
     echo "$(vi_mode_prompt_info)"
@@ -120,10 +121,13 @@ function _node_prompt_version() {
   fi
 }
 
+# Possible other python symbols: 🐍 Ƨ § Python
+# the emoji is the best, but causes some glitches with it's multiple character encoding
+# in certain terminals like VS Code's
 function _python_prompt_version() {
   if which python &> /dev/null; then
     local python_version=`python --version 2>&1 | awk '{print $2}'`
-    echo "%{$fg[yellow]%}🐍 $python_version%{$reset_color%}"
+    echo "%{$fg[yellow]%}python $python_version%{$reset_color%}"
   fi
 }
 
