@@ -39,9 +39,37 @@ ZSH_THEME="git-taculous"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git pipenv)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 alias gs="git status"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Personal config
+# run nvm install if .nvmrc exists in opened directory (useful for vscode terminal)
+[ -s "./.nvmrc" ] && nvm install
+
+# Actually, use nodenv instead
+eval "$(nodenv init -)"
+
+# Crisis Text Line setup stuff
+export PATH="$(brew --prefix php@7.2)/bin:/usr/local/sbin:/usr/local/bin:$PATH"
+
+source ~/projects/app/scripts/bash_additions.sh
+
+# For central dispatch
+eval "$(rbenv init -)"
+
+# Set up rupa z
+# Move next only if `homebrew` is installed
+if command -v brew >/dev/null 2>&1; then
+	# Load rupa's z if installed
+	[ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
+fi
+
+alias please="sudo"
+
